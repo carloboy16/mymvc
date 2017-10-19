@@ -10,7 +10,7 @@ class loginController extends Main
 	
 	$a = $this->fetchQuery($this->select('user'));
 	$a = array('user_data'=>$a);
-	$this->render('header',$a);
+	$this->render('tpl/header',$a);
 	$this->render('test',$a);
 	}
 	function create(){
@@ -18,9 +18,13 @@ class loginController extends Main
 		return new self();
 	}
 	function test(){
-		var_dump($this);
-		echo "yahoo!";
+			$a = $this->fetchQuery($this->select('user'));
+			echo $this->Json->jprint($a);
 
+	}
+	function boo($r = null){
+			echo $this->Json->jprint($r);
+		echo "boo";
 	}
 }
 

@@ -1,0 +1,5 @@
+{
+	"jc":{
+		"route":"/login/test/:id"
+	}
+}

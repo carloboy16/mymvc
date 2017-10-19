@@ -7,14 +7,31 @@ class Loader Extends DB
 	}
 	public function load_controller(&$request){
 		extract($request);
+			
 		$url = explode('/', $url);
+
 		if(!file_exists("controller/".$url[0]."Controller.php")){
 			return false;
 		}
+
+			
+
 		if(isset($url[1]) && $url[1] != ""){
 			include_once("controller/".$url[0]."Controller.php");
 			$c = "controller\\".$url[0].'Controller';
 			$this->controller = $c::create();
+			if(count($url)>=3){
+			for($a = 0;$a<count($url);$a++){
+				
+				if($a>=2){
+						$d[] = $url[$a];
+				}
+			}
+			if(count($d)>0){
+				$this->controller->$url[1]($d);
+				return;
+			}
+			}
 			$this->controller->$url[1]();
 		}else{
 			$c = "";
@@ -24,9 +41,17 @@ class Loader Extends DB
 			$this->controller->index();
 		}
 	}
+	function checkifroute($a,$b){
+		foreach ($a as $a) {
+			$d = (strpos($a->route,$b));
+		}
+		return $d ;
+	}
 	function render($file,$data= null){
 		$file = "view/".$file.'.php';
-		extract($data);
+		if(isset($data)){
+			extract($data);
+		}
 		ob_start();
 		  include($file);
 		echo ob_get_clean();

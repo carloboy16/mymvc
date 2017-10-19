@@ -14,12 +14,15 @@ function __autoload($class)
 		}
 	}
 }
-
+$c = new Library\Main();
 if(isset($_GET['url'])){
-	$c = new Library\Main();
+	
 	if($c->load_controller($_GET)){
 		
 	};
+}else{
+	$default = array('url'=>'index');
+	$c->load_controller($default);
 }
 
 
