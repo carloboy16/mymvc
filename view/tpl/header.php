@@ -2,6 +2,6 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>HEADER</title>
+	<title>jcframework</title>
+	<link rel="stylesheet" href="/assets/css/test.css">
 </head>
-<DIV class="">im header</DIV>

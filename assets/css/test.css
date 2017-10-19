@@ -1,0 +1,12 @@
+h1,h4{
+	font-family: 'arial';
+	color:#aaa;
+	font-weight: normal;
+}
+.container-welcome{
+	box-sizing: border-box;
+	padding: 50px;
+	text-align: center;
+	width: 1300px;
+	max-width: 100%;
+}

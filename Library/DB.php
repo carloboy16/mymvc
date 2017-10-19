@@ -14,7 +14,11 @@ class DB
 		$this->_connection =new \mysqli($DB_C['HOST'],$DB_C['USER'],$DB_C['PASSWORD'],$DB_C['DB']);
 		
 	}
-	public function truncate($table){
+	public function truncate($table=null){
+			if(isset($this->dbused)){
+				$table = $this->dbused;
+			}
+		
 		$this->_query.="TRUNCATE TABLE {$table}";
 		return $this;
 	}
@@ -49,7 +53,10 @@ class DB
 
 
 	}
-	public function update($table){
+	public function update($table = null){
+			if(isset($this->dbused)){
+				$table = $this->dbused;
+			}
 		$this->_query = "UPDATE {$table}";
 		return $this;
 	}
@@ -65,7 +72,14 @@ class DB
 		
 		 return $this;
 	}
-	public function delete($table){
+	public function delete($table=null){
+		if($table==null){
+			if(isset($this->dbused)){
+				$table = $this->dbused;
+			}else{
+				return false;
+			}
+		}
 		$this->_query = "DELETE  FROM {$table}";
 		return $this;
 	}
@@ -107,10 +121,25 @@ class DB
 		$this->_query = '';
 		$this->_param = array();
 	}
-	public function insert($table,$data){
+	public function insert($table=null,$data=null){
+		
+		if(is_array($table)){
+			$data = $table;
+			$table = null;
+		}
+
+		if($table==null){
+			if(isset($this->dbused)){
+				$table = $this->dbused;
+			}else{
+				return false;
+			}
+		}
+
 		if($data === null || $data===""){
 			return false;
 		}
+
 		$col = array();
 		$val = array();
 		$input = array();
@@ -148,7 +177,13 @@ class DB
 		}
 		return $st->insert_id;
 	}
-	public function select($table,$option = ""){
+	public function select($table = null,$option = ""){
+
+		  if(isset($this->dbused)){
+		  		$option = $table;
+				$table = $this->dbused;
+			}
+
 		$option = $option== null ||$option=="" ? "*":$option;
 		if($table==null){
 			return false;
