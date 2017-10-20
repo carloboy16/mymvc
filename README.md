@@ -9,4 +9,10 @@
 	<div>mywebsite.com/[controllerName]/[function name]/[url parameter]</div>
 	<div>Controller:</div>
 	<div><b> app/controller/[your]Controller.php</b></div>
+	<div>class controller{
+		<br>
+		function route($parameter = null){<br>
+			<br>
+		} <br>	
+		}</div>
 </div>
