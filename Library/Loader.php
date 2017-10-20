@@ -5,46 +5,47 @@ class Loader Extends DB
 	function __construct(){
 		parent::__construct();
 	}
+	function check_route($r){
+	extract($r);
+	$r = explode("/",$url);
+		Global $_Route;
+		foreach ($_Route as $rt => $v) {
+				if(strpos($rt,$url)){
+					return true;
+				}else{
+					return false;
+				}
+		}	
+	}
 	public function load_controller(&$request){
 		extract($request);
 		
 		$url = explode('/', $url);
+		$onroute = $this->check_route($request);
+	    // var_dump($onroute);
+		$param = array();
 
 		if(!file_exists("controller/".$url[0]."Controller.php")){
 			echo 'Controller Doesnt Exist';
 			return false;
 		}
-
-			
-
-		if(isset($url[1]) && $url[1] != ""){
-
-			include_once("controller/".$url[0]."Controller.php");
-			$c = "controller\\".$url[0].'Controller';
-			$this->controller = $c::create();
-			if(count($url)>=3){
-			for($a = 0;$a<count($url);$a++){
-				
-				if($a>=2){
-						$d[] = $url[$a];
-				}
+		$function = 'index';
+		foreach ($url as $i =>$v) {
+			if($i == 0 ){
+				$controller = 'controller\\'.$v.'Controller';
+				$controller =  $controller::create();
 			}
+			elseif($i  == 1){
+				$function = $v;
 
-			if(count($d)>0){
-				$this->controller->$url[1]($d);
-				return;
 			}
+			else{
+				$param[$i] = $v;
 			}
-
-			$this->controller->$url[1]();
-		}else{
-			$c = "";
-
-			include_once("controller/".$url[0]."Controller.php");
-			$c = "controller\\".$url[0].'Controller';
-			$this->controller = $c::create();
-			$this->controller->index();
 		}
+
+		call_user_func_array(array($controller,$function), $param);
+
 	}
 	function checkifroute($a,$b){
 		foreach ($a as $a) {

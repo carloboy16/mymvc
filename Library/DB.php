@@ -131,10 +131,9 @@ class DB
 		if($table==null){
 			if(isset($this->dbused)){
 				$table = $this->dbused;
-			}else{
-				return false;
 			}
 		}
+		// var_dump($data);
 
 		if($data === null || $data===""){
 			return false;

@@ -6,6 +6,8 @@ class indexController extends Main
 {
 	function index(){
 		$userdb = user::create();
+		$userdb->delete()->where('username = ?','lucky')->run();
+
 		$a['user'] = $userdb->fetchQuery($userdb->select('email'));
 
 		$a['test'] = $this->fetchQuery($this->select('user')->where('user_id = ?','1'));
@@ -14,10 +16,14 @@ class indexController extends Main
 		$this->render('Welcome',$a);
 		$this->render('tpl/footer');
 	}
-
-	function create(){
+	public function s($id = null,$ew = null){
+		var_dump($id);
+		var_dump($ew);
+	}
+	public function create(){
 		return new self();
 	}
+
 }
 
  ?>
