@@ -7,24 +7,11 @@ class Loader
 	function __construct(){
 
 	}
-	function check_route($r){
-	extract($r);
-	$r = explode("/",$url);
-		Global $_Route;
-		foreach ($_Route as $rt => $v) {
-				if(strpos($rt,$url)){
-					return true;
-				}else{
-					return false;
-				}
-		}	
-	}
 	public function load_controller(&$request){
 		extract($request);
 		
 		$url = explode('/', $url);
-		$onroute = $this->check_route($request);
-	    // var_dump($onroute);
+
 		$param = array();
 
 		if(!file_exists("controller/".$url[0]."Controller.php")){
@@ -42,10 +29,14 @@ class Loader
 
 			}
 			else{
+				
 				$param[$i] = $v;
+				
 			}
 		}
-
+		if($_GET){
+			unset($_GET['url']);
+		}
 		call_user_func_array(array($controller,$function), $param);
 
 	}

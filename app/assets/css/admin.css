@@ -1,0 +1,28 @@
+@font-face{
+	font-family: 'quicksand',
+	src: url(../font/Quicksand-Medium.ttf);
+}
+.login_container{
+	background-color: #eee;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	height: 100%;
+	top: 0;
+
+}
+.login_container form{
+
+    position: absolute;
+    top: 50%;
+    width: 400px;
+    max-width: 100%;
+    box-sizing: border-box;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: white;
+    padding: 22px;
+    border-radius: 5px;
+}

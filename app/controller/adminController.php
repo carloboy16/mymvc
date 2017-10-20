@@ -26,9 +26,11 @@ class adminController  extends Main
 			header('location:/admin/login');
 		}
 	}
-	public function login($id = null,$ew = null){
+	public function login($id = null){
+		// var_dump($id);
+		$req = array('request' => $_POST);
 		$this->render($this->header_tpl);
-		$this->render('admin/login');	
+		$this->render('admin/login',$req);	
 		$this->render($this->footer_tpl);
 
 
