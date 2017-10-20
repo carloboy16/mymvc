@@ -8,5 +8,5 @@
 	<h3>Url structure</h3>
 	<div>mywebsite.com/[controllerName]/[function name]/[url parameter]</div>
 	<div>Controller:</div>
-	<div>app/controller/[your]Controller.php</div>
+	<div><b> app/controller/[your]Controller.php</b></div>
 </div>
