@@ -2,7 +2,7 @@
 namespace controller;
 use Library\DB as DB;
 use Library\Main as Main;
-use model\user as  user;
+use Model\user as  user;
 class adminController  extends Main
 {
 	protected $db;
@@ -15,8 +15,6 @@ class adminController  extends Main
 	function index(){
 		$this->db = new DB;
 		$userdb =new user();
-		$userdb->delete()->where('username = ?','lucky')->run();
-
 		$a['user'] = $userdb->fetchQuery($userdb->select('email'));
 
 		$a['test'] = $this->db->fetchQuery($this->db->select('user')->where('user_id = ?','1'));
