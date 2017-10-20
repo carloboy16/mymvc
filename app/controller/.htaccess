@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
-
+RewriteCond %{THE_REQUEST} ^[A-Z]	+\ /[^?\ ]*\.php[/?\ ]
 RewriteRule .*\.php$ 404.php [L]
 RewriteRule  (.*) 404.php [L]
 </IfModule>
