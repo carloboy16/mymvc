@@ -6,9 +6,4 @@ $DB_C = array('HOST' => 'localhost',
 			'DB'=>'jcbackend'
 			 );
 
-
-
-
-
-
  ?>

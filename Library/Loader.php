@@ -1,9 +1,11 @@
 <?php 	
 namespace Library;
-class Loader Extends DB
+class Loader
 {
+	public $header_tpl;
+	public $footer_tpl;
 	function __construct(){
-		parent::__construct();
+
 	}
 	function check_route($r){
 	extract($r);
@@ -33,7 +35,7 @@ class Loader Extends DB
 		foreach ($url as $i =>$v) {
 			if($i == 0 ){
 				$controller = 'controller\\'.$v.'Controller';
-				$controller =  $controller::create();
+				$controller =  new $controller();
 			}
 			elseif($i  == 1){
 				$function = $v;
@@ -53,6 +55,7 @@ class Loader Extends DB
 		}
 		return $d ;
 	}
+	
 	function render($file,$data= null){
 		$file = "view/".$file.'.php';
 		$data = (array) $data;
